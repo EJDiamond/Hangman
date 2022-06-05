@@ -1,31 +1,23 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Hangman
 
-Welcome USER_NAME,
+## User Experience(UX)
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
+* First Time User Goals:
 
-## Reminders
+  1. As a first time user, I want to have fun playing the game and feel nostalgia from having played the original game.
+  2. As a first time user, I want to be able to understand clearly how to navigate through the game.
+  3. As a first time user, I want to be able to play numerous times without coming across the same word.
 
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
+* Returning Visitor Goals:
 
-## Creating the Heroku app
+  1. As a returning visitor, I want to be able to play the game over and over without having repeated answers.
+  2. As a returning visitor, I want to be able to navigate through the game the same as the first time.
+  3. As a returning visitor, I want to be able to check highscores and try and beat them.
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+* Frequent User Goals:
 
-1. `heroku/python`
-2. `heroku/nodejs`
+  1. As a frequent user, I want to be able to continously play the game without coming across any works I have encountered before.
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
+## Flowchart
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
 
-Connect your GitHub repository and deploy as normal.
-
-## Constraints
-
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
-
------
-Happy coding!
