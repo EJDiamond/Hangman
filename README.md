@@ -10,8 +10,8 @@
 
 * Returning Visitor Goals:
 
-  1. As a returning visitor, I want to be able to play the game over and over without having repeated answers.
-  2. As a returning visitor, I want to be able to navigate through the game the same as the first time.
+  1. As a returning visitor, I want to be able to play the game over and over without having repeated words.
+  2. As a returning visitor, I want to be able to navigate through the game the same as the first time I played.
   3. As a returning visitor, I want to be able to check highscores and try and beat them.
 
 * Frequent User Goals:
