@@ -16,7 +16,7 @@
 
 * Frequent User Goals:
 
-  1. As a frequent user, I want to be able to continously play the game without coming across any works I have encountered before.
+  1. As a frequent user, I want to be able to continously play the game without coming across any words I have encountered before.
 
 ## Flowchart
 
