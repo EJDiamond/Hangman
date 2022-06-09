@@ -42,7 +42,7 @@ def validate_guess(guess, letters_guessed):
         if guess in letters_guessed:
             print(f"{guess} has already been guessed")
         if guess.isalpha() is False:
-            print("Please enter a valid letter")
+            print("Only letters are valid")
         if len(guess) != 1:
             print("Only one letter can be guessed at a time")
         return False
@@ -63,33 +63,31 @@ def play_game():
     while tries > 0:
         guess = input("\n Enter a letter: \n")
 
-        if validate_guess(guess, letters_guessed):
+        if validate_guess(guess, letters_guessed):  
             if guess in secret_word:
                 print(f"Well Done! The letter {guess} is in the word.")
             else:
                 tries -= 1
                 print(f"Sorry, the letter {guess} is not in the word.\n")
                 print(f"You have {tries} attempt(s) left.")
-        else:
-            print("Enter a letter")
-            
+         
+            letters_guessed = letters_guessed + guess
+            incorrect_letter_count = 0
 
-        letters_guessed = letters_guessed + guess
-        incorrect_letter_count = 0
+            for letter in secret_word:
+                if letter in letters_guessed:
+                    print(f"{letter}", end="")
+                else:
+                    print("_", end="")
+                    incorrect_letter_count += 1
 
-        for letter in secret_word:
-            if letter in letters_guessed:
-                print(f"{letter}", end="")
-            else:
-                print("_", end="")
-                incorrect_letter_count += 1
-        print(f"\nLetters guessed: {letters_guessed}")
-        print(view_hangman(tries))
+            print(f"\nLetters guessed: {letters_guessed}")
+            print(view_hangman(tries))
 
-        if incorrect_letter_count == 0:
-            print("")
-            print(f"Congratulations, you won! The word was {secret_word}")
-            break
+            if incorrect_letter_count == 0:
+                print("")
+                print(f"Congratulations, you won! The word was {secret_word}")
+                break
     else:
         print("")
         print(f"Sorry you lose! The word was {secret_word}")
