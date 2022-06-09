@@ -29,7 +29,7 @@ def get_secret_word():
     random_row = WORDS.row_values(randrange(1, row_ref_start))
     random_word = random_row[0]
 
-    return random_word.upper()
+    return random_word
 
 
 def validate_guess(guess, letters_guessed):
@@ -63,6 +63,8 @@ def play_game():
     while tries > 0:
         guess = input("\n Enter a letter: \n")
 
+        # Validates the guess and then checks if it is in the secret word.
+        # If the letter is incorrect, tries increments by 1.
         if validate_guess(guess, letters_guessed):  
             if guess in secret_word:
                 print(f"Well Done! The letter {guess} is in the word.")
@@ -70,10 +72,14 @@ def play_game():
                 tries -= 1
                 print(f"Sorry, the letter {guess} is not in the word.\n")
                 print(f"You have {tries} attempt(s) left.")
-         
+
+            # Letters guessed variable adds each guess, so the user can see 
+            # what they have already tried.
             letters_guessed = letters_guessed + guess
             incorrect_letter_count = 0
 
+            # Adds the letter to the word if it correct and prints an
+            # underscore if it is incorrect.
             for letter in secret_word:
                 if letter in letters_guessed:
                     print(f"{letter}", end="")
@@ -81,13 +87,18 @@ def play_game():
                     print("_", end="")
                     incorrect_letter_count += 1
 
+            # Prints letters guessed each time a new letter is guessed.
             print(f"\nLetters guessed: {letters_guessed}")
             print(view_hangman(tries))
 
+            # If incorrect letter count = 0 after the loop runs, the player
+            # has guessed the whole word correctly and the loop breaks.
             if incorrect_letter_count == 0:
                 print("")
                 print(f"Congratulations, you won! The word was {secret_word}")
                 break
+            
+    # If the incorrect letter count = 6 the player loses.
     else:
         print("")
         print(f"Sorry you lose! The word was {secret_word}")
