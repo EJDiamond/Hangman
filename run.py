@@ -53,11 +53,9 @@ def play_game():
             print(f"Well Done! The letter {guess} is in the word.")
         else:
             tries -= 1
-            print(f"Sorry, the letter {guess} is not in the word.\n You have {tries} attempt(s) left.")
+            print(f"Sorry, the letter {guess} is not in the word.\n")
+            print(f"You have {tries} attempt(s) left.")
 
-        """
-        For loop to show correct letters guessed
-        """
         letters_guessed = letters_guessed + guess
         incorrect_letter_count = 0
 
@@ -67,6 +65,16 @@ def play_game():
             else:
                 print("_", end="")
                 incorrect_letter_count += 1
+            
+        print(f"\nLetters guessed: {letters_guessed}")
+                
+        if incorrect_letter_count == 0:
+            print("")
+            print(f"You won, the word was {secret_word}")
+            break
+    else:
+        print("")
+        print(f"You lose! The word was {secret_word}")
 
 
 play_game()
