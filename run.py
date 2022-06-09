@@ -29,7 +29,23 @@ def get_secret_word():
     random_row = WORDS.row_values(randrange(1, row_ref_start))
     random_word = random_row[0]
 
-    return random_word
+    return random_word.upper()
+
+
+def validate_guess(guess, letters_guessed):
+    """
+    Validating that the guess is a letter and hasn't already been guessed
+    """
+    if (guess not in letters_guessed) and guess.isalpha() and (len(guess) == 1):
+        return True
+    else:
+        if guess in letters_guessed:
+            print(f"{guess} has already been guessed")
+        if guess.isalpha() is False:
+            print("Please enter a valid letter")
+        if len(guess) != 1:
+            print("Only one letter can be guessed at a time")
+        return False
 
 
 def play_game():
@@ -47,12 +63,16 @@ def play_game():
     while tries > 0:
         guess = input("\n Enter a letter: \n")
 
-        if guess in secret_word:
-            print(f"Well Done! The letter {guess} is in the word.")
+        if validate_guess(guess, letters_guessed):
+            if guess in secret_word:
+                print(f"Well Done! The letter {guess} is in the word.")
+            else:
+                tries -= 1
+                print(f"Sorry, the letter {guess} is not in the word.\n")
+                print(f"You have {tries} attempt(s) left.")
         else:
-            tries -= 1
-            print(f"Sorry, the letter {guess} is not in the word.\n")
-            print(f"You have {tries} attempt(s) left.")
+            print("Enter a letter")
+            
 
         letters_guessed = letters_guessed + guess
         incorrect_letter_count = 0
@@ -155,5 +175,6 @@ def view_hangman(tries):
                 +----------------+""",
             ]
     return stages[tries]
+
 
 play_game()
