@@ -47,7 +47,7 @@ def play_game():
     loop the game until the player fails and break when they win
     """
     while tries > 0:
-        guess = input("Enter a letter")
+        guess = input("\n Enter a letter: \n")
 
         if guess in secret_word:
             print(f"Well Done! The letter {guess} is in the word.")
@@ -55,18 +55,18 @@ def play_game():
             tries -= 1
             print(f"Sorry, the letter {guess} is not in the word.\n You have {tries} attempt(s) left.")
 
-    """
-    Creates a list of letter already guessed
-    """
-    letters_guessed = letters_guessed + guess
-    incorrect_letter_count = 0
+        """
+        For loop to show correct letters guessed
+        """
+        letters_guessed = letters_guessed + guess
+        incorrect_letter_count = 0
 
-    for letter in secret_word:
-        if letter in secret_word:
-            print(f"{letter}", end="")
-        else:
-            print("_", end="")
-            incorrect_letter_count += 1
+        for letter in secret_word:
+            if letter in letters_guessed:
+                print(f"{letter}", end="")
+            else:
+                print("_", end="")
+                incorrect_letter_count += 1
 
 
 play_game()
