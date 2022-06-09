@@ -67,11 +67,15 @@ def play_game():
         # If the letter is incorrect, tries increments by 1.
         if validate_guess(guess, letters_guessed):  
             if guess in secret_word:
+                print("")
                 print(f"Well Done! The letter {guess} is in the word.")
+                print("")
             else:
                 tries -= 1
+                print("")
                 print(f"Sorry, the letter {guess} is not in the word.\n")
-                print(f"You have {tries} attempt(s) left.")
+                print(f"You have {tries} attempt(s) left.\n")
+                print("")
 
             # Letters guessed variable adds each guess, so the user can see 
             # what they have already tried.
@@ -88,6 +92,7 @@ def play_game():
                     incorrect_letter_count += 1
 
             # Prints letters guessed each time a new letter is guessed.
+            print("")
             print(f"\nLetters guessed: {letters_guessed}")
             print(view_hangman(tries))
 
@@ -97,11 +102,15 @@ def play_game():
                 print("")
                 print(f"Congratulations, you won! The word was {secret_word}")
                 break
-            
+
     # If the incorrect letter count = 6 the player loses.
     else:
         print("")
         print(f"Sorry you lose! The word was {secret_word}")
+        loser_play_again = input("\nWould you like to play again? / Y\n")
+
+        if loser_play_again == "Y":
+            play_game()
 
 
 def view_hangman(tries):
