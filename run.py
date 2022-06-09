@@ -38,9 +38,10 @@ def play_game():
     """
     secret_word = get_secret_word()
     letters_guessed = ""
-
+    
     # Number of attempts before player fails
     tries = 6
+    print(view_hangman(tries))
 
     # Loop the game until the player fails, and break when they win
     while tries > 0:
@@ -63,7 +64,8 @@ def play_game():
                 print("_", end="")
                 incorrect_letter_count += 1
         print(f"\nLetters guessed: {letters_guessed}")
-            
+        print(view_hangman(tries))
+
         if incorrect_letter_count == 0:
             print("")
             print(f"Congratulations, you won! The word was {secret_word}")
@@ -71,9 +73,6 @@ def play_game():
     else:
         print("")
         print(f"Sorry you lose! The word was {secret_word}")
-
-
-play_game()
 
 
 def view_hangman(tries):
@@ -86,7 +85,7 @@ def view_hangman(tries):
                 |   -------+     |
                 |   |      |     |
                 |   |      0     |
-                |   |     /|\\   |
+                |   |     /|\    |
                 |   |     / \    |
                 |   |            |
                 |   ----------   |
@@ -155,3 +154,6 @@ def view_hangman(tries):
                 |   ----------   |
                 +----------------+""",
             ]
+    return stages[tries]
+
+play_game()
