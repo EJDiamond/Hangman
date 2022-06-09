@@ -38,14 +38,11 @@ def play_game():
     """
     secret_word = get_secret_word()
     letters_guessed = ""
-    """
-    Number of attempts before player fails
-    """
+
+    # Number of attempts before player fails
     tries = 6
 
-    """
-    loop the game until the player fails and break when they win
-    """
+    # Loop the game until the player fails, and break when they win
     while tries > 0:
         guess = input("\n Enter a letter: \n")
 
@@ -65,16 +62,15 @@ def play_game():
             else:
                 print("_", end="")
                 incorrect_letter_count += 1
-            
         print(f"\nLetters guessed: {letters_guessed}")
-                
+            
         if incorrect_letter_count == 0:
             print("")
-            print(f"You won, the word was {secret_word}")
+            print(f"Congratulations, you won! The word was {secret_word}")
             break
     else:
         print("")
-        print(f"You lose! The word was {secret_word}")
+        print(f"Sorry you lose! The word was {secret_word}")
 
 
 play_game()
