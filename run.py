@@ -35,6 +35,7 @@ def validate_guess(guess, letters_guessed):
             print("Only letters are valid")
         if len(guess) != 1:
             print("Only one letter can be guessed at a time")
+        
         return False
 
 
@@ -78,56 +79,52 @@ def play_game():
     # Loop the game until the player fails, and break when they win
     while tries > 0:
 
-        guess = input("\n Enter a letter: \n")
+        guess = input("\nEnter a letter: \nFor the hint type: hint \n")
 
         # Validates the guess and then checks if it is in the secret word.
         # If the letter is incorrect, tries increments by 1.
-        if validate_guess(guess, letters_guessed):  
-            if guess in secret_word:
-                print("")
-                print(f"Well Done! The letter {guess} is in the word.")
-                print("")
-                print(view_hangman(tries))
-            else:
-                tries -= 1
-                print("")
-                print(f"Sorry, the letter {guess} is not in the word.\n")
-                print(f"You have {tries} attempt(s) left.\n")
-                print("")
-                print(view_hangman(tries))
-                if (input("Would you like a hint? y/n\n")) == "y":
-                    print(hint)
+        if guess == "hint":
+            print(hint)
+        else:
+            if validate_guess(guess, letters_guessed):  
+                if guess in secret_word:
+                    print("")
+                    print(f"Well Done! The letter {guess} is in the word.")
+                    print("")
+                    print(view_hangman(tries))
+                else:
                     tries -= 1
-                else:
-                    continue
+                    print("")
+                    print(f"Sorry, the letter {guess} is not in the word.\n")
+                    print(f"You have {tries} attempt(s) left.\n")
+                    print("")
+                    print(view_hangman(tries))
                     
+                        
+                # Letters guessed variable adds each guess, so the user can see 
+                # what they have already tried.
+                letters_guessed = letters_guessed + guess
+                incorrect_letter_count = 0
 
+                # Adds the letter to the word if it correct and prints an
+                # underscore if it is incorrect.
+                for letter in secret_word:
+                    if letter in letters_guessed:
+                        print(f"{letter}", end="")
+                    else:
+                        print("_", end="")
+                        incorrect_letter_count += 1
 
-
-            # Letters guessed variable adds each guess, so the user can see 
-            # what they have already tried.
-            letters_guessed = letters_guessed + guess
-            incorrect_letter_count = 0
-
-            # Adds the letter to the word if it correct and prints an
-            # underscore if it is incorrect.
-            for letter in secret_word:
-                if letter in letters_guessed:
-                    print(f"{letter}", end="")
-                else:
-                    print("_", end="")
-                    incorrect_letter_count += 1
-
-            # Prints letters guessed each time a new letter is guessed.
-            print("")
-            print(f"\nLetters guessed: {letters_guessed}")
-
-            # If incorrect letter count = 0 after the loop runs, the player
-            # has guessed the whole word correctly and the loop breaks.
-            if incorrect_letter_count == 0:
+                # Prints letters guessed each time a new letter is guessed.
                 print("")
-                print(f"Congratulations, you won! The word was {secret_word}")
-                break
+                print(f"\nLetters guessed: {letters_guessed}")
+
+                # If incorrect letter count = 0 after the loop runs, the player
+                # has guessed the whole word correctly and the loop breaks.
+                if incorrect_letter_count == 0:
+                    print("")
+                    print(f"Congratulations, you won! The word was {secret_word}")
+                    break
 
     # If the incorrect letter count = 6 the player loses.
     else:
