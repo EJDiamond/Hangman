@@ -18,24 +18,9 @@ GSPREAD_CLIENT = gspread. authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('hangman_words')
 WORDS = SHEET.worksheet('words')
 
+# Global variable to hold the random_row
+random_row = None
 
-def get_secret_word():
-    """
-    Pulling a random word from the word column in the hangman_words google
-    sheet to use as secret word
-    """
-    row_count = len(WORDS.col_values(1))
-    row_ref_start = row_count + 1
-    random_row = WORDS.row_values(randrange(1, row_ref_start))
-    word = random_row[0]
-    hint = random_row[1]
-    print(random_row)
-    print(word)
-    print(hint)
-    #random_word = random_row[0]
-    #word_hint = random_row[1]
-    #return random_word, word_hint
-    return random_row
 
 def validate_guess(guess, letters_guessed):
     """
@@ -53,13 +38,42 @@ def validate_guess(guess, letters_guessed):
         return False
 
 
+def get_random_row():
+    """
+    Pulls a random row from the google sheet for word and hint
+    """
+    global random_row
+    random_row = WORDS.row_values(randrange(1,len(WORDS.col_values(1))))
+
+
+def get_secret_word():
+    """
+    Uses index 0 from random row to pull the random word
+    """
+    global random_row
+    return random_row[0]
+
+
+def get_secret_hint():
+    """
+    Uses index 1 from random row to pull the random word's hint
+    """
+    global random_row
+    return random_row[1]
+
+
 def play_game():
     """
     Function to play game
     """
+    get_random_row()
     secret_word = get_secret_word()
-    letters_guessed = ""
+    hint = get_secret_hint()
     
+    print(hint)
+  
+    letters_guessed = ""
+
     # Number of attempts before player fails
     tries = 6
     print(view_hangman(tries))
