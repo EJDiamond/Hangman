@@ -2,6 +2,7 @@
 Import the spreadsheet to retrieve the secret words
 """
 from random import randrange
+import os
 import gspread
 from google.oauth2.service_account import Credentials
 
@@ -20,6 +21,10 @@ WORDS = SHEET.worksheet('words')
 
 # Global variable to hold the random_row
 random_row = None
+
+
+def clear_terminal():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 
 def validate_guess(guess, letters_guessed):
@@ -99,8 +104,7 @@ def play_game():
                     print(f"You have {tries} attempt(s) left.\n")
                     print("")
                     print(view_hangman(tries))
-                    
-                        
+        
                 # Letters guessed variable adds each guess, so the user can see 
                 # what they have already tried.
                 letters_guessed = letters_guessed + guess
@@ -123,9 +127,10 @@ def play_game():
                 # has guessed the whole word correctly and the loop breaks.
                 if incorrect_letter_count == 0:
                     print("")
-                    print(f"Congratulations, you won! The word was {secret_word}")
+                    print(f"Congratulations! The word was {secret_word}")
                     break
-
+                
+        clear_terminal()
     # If the incorrect letter count = 6 the player loses.
     else:
         print("")
