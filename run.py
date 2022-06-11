@@ -27,10 +27,15 @@ def get_secret_word():
     row_count = len(WORDS.col_values(1))
     row_ref_start = row_count + 1
     random_row = WORDS.row_values(randrange(1, row_ref_start))
-    random_word = random_row[0]
-
-    return random_word
-
+    word = random_row[0]
+    hint = random_row[1]
+    print(random_row)
+    print(word)
+    print(hint)
+    #random_word = random_row[0]
+    #word_hint = random_row[1]
+    #return random_word, word_hint
+    return random_row
 
 def validate_guess(guess, letters_guessed):
     """
@@ -115,7 +120,7 @@ def play_game():
 
 def view_hangman(tries):
     """
-    Create the hangman stages to be shown as the number of lives decrease
+    The hangman stages to be shown as the number of lives decrease
     """
     stages = [
                 """
