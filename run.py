@@ -43,7 +43,7 @@ def get_random_row():
     Pulls a random row from the google sheet for word and hint
     """
     global random_row
-    random_row = WORDS.row_values(randrange(1,len(WORDS.col_values(1))))
+    random_row = WORDS.row_values(randrange(1, len(WORDS.col_values(1))))
 
 
 def get_secret_word():
@@ -69,9 +69,6 @@ def play_game():
     get_random_row()
     secret_word = get_secret_word()
     hint = get_secret_hint()
-    
-    print(hint)
-  
     letters_guessed = ""
 
     # Number of attempts before player fails
@@ -80,6 +77,7 @@ def play_game():
 
     # Loop the game until the player fails, and break when they win
     while tries > 0:
+
         guess = input("\n Enter a letter: \n")
 
         # Validates the guess and then checks if it is in the secret word.
@@ -89,12 +87,22 @@ def play_game():
                 print("")
                 print(f"Well Done! The letter {guess} is in the word.")
                 print("")
+                print(view_hangman(tries))
             else:
                 tries -= 1
                 print("")
                 print(f"Sorry, the letter {guess} is not in the word.\n")
                 print(f"You have {tries} attempt(s) left.\n")
                 print("")
+                print(view_hangman(tries))
+                if (input("Would you like a hint? y/n\n")) == "y":
+                    print(hint)
+                    tries -= 1
+                else:
+                    continue
+                    
+
+
 
             # Letters guessed variable adds each guess, so the user can see 
             # what they have already tried.
@@ -113,7 +121,6 @@ def play_game():
             # Prints letters guessed each time a new letter is guessed.
             print("")
             print(f"\nLetters guessed: {letters_guessed}")
-            print(view_hangman(tries))
 
             # If incorrect letter count = 0 after the loop runs, the player
             # has guessed the whole word correctly and the loop breaks.
