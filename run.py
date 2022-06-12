@@ -34,8 +34,19 @@ def welcome_screen():
     print(result)
     tries = 0
     print(view_hangman(tries))
+    
+
+def get_username():
+    """
+    User enters their name, letters only
+    """    
     global username
     username = input("\nEnter a username:")
+    while True:
+        if username.isalpha():
+            break
+        else: 
+            print("Please enter only letters")
 
 
 def clear_terminal():
@@ -240,5 +251,6 @@ def view_hangman(tries):
 
 
 welcome_screen()
+get_username()
 clear_terminal()
 play_game()
