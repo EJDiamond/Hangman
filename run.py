@@ -38,16 +38,6 @@ def welcome_screen():
     tries = 0
     print(view_hangman(tries))
     
-"""
-def update_highscores_worksheet():
-"""
-#Populates worksheet using a dictionary
-"""
-keys = [str(eachvalue) for eachvalue in scores.keys()]
-values = [str(eachvalue) for eachvalue in scores.values()]
-update_results = [{'range': 'A2:Z2', 'values': [keys]}, {'range': 'A3:Z3', 'values': [values]}]
-HIGHSCORES.batch_update(update_results)
-"""
 
 def get_username():
     """
