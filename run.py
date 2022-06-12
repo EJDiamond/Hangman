@@ -23,6 +23,7 @@ HIGHSCORES = SHEET.worksheet('highscores')
 
 # Global variable to hold the random_row
 random_row = None
+username = None
 
 
 def welcome_screen():
@@ -33,6 +34,7 @@ def welcome_screen():
     print(result)
     tries = 0
     print(view_hangman(tries))
+    global username
     username = input("\nEnter a username:")
 
 
@@ -109,13 +111,13 @@ def play_game():
             if validate_guess(guess, letters_guessed):  
                 if guess in secret_word:
                     print("")
-                    print(f"Well Done! The letter {guess} is in the word.")
+                    print(f"Well Done {username}! The letter {guess} is in the word.")
                     print("")
                     print(view_hangman(tries))
                 else:
                     tries -= 1
                     print("")
-                    print(f"Sorry, the letter {guess} is not in the word.\n")
+                    print(f"Sorry {username}, the letter {guess} is not in the word.\n")
                     print(f"You have {tries} attempt(s) left.\n")
                     print("")
                     print(view_hangman(tries))
@@ -142,13 +144,13 @@ def play_game():
                 # has guessed the whole word correctly and the loop breaks.
                 if incorrect_letter_count == 0:
                     print("")
-                    print(f"Congratulations! The word was {secret_word}")
+                    print(f"Congratulations {username}! The word was {secret_word}")
                     break
                     
     # If the incorrect letter count = 6 the player loses.
     else:
         print("")
-        print(f"Sorry you lose! The word was {secret_word}")
+        print(f"Sorry {username} you lose! The word was {secret_word}")
         loser_play_again = input("\nWould you like to play again? / Y\n")
 
         if loser_play_again == "Y":
