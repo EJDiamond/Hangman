@@ -19,6 +19,7 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread. authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('hangman_words')
 WORDS = SHEET.worksheet('words')
+HIGHSCORES = SHEET.worksheet('highscores')
 
 # Global variable to hold the random_row
 random_row = None
@@ -30,9 +31,9 @@ def welcome_screen():
     """
     result = pyfiglet.figlet_format("HANGMAN")
     print(result)
-
-
-welcome_screen()
+    tries = 0
+    print(view_hangman(tries))
+    username = input("\nEnter a username:")
 
 
 def clear_terminal():
@@ -143,8 +144,7 @@ def play_game():
                     print("")
                     print(f"Congratulations! The word was {secret_word}")
                     break
-                
-        
+                    
     # If the incorrect letter count = 6 the player loses.
     else:
         print("")
@@ -237,4 +237,6 @@ def view_hangman(tries):
     return stages[tries]
 
 
+welcome_screen()
+clear_terminal()
 play_game()
