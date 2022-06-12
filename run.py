@@ -21,8 +21,8 @@ SHEET = GSPREAD_CLIENT.open('hangman_words')
 WORDS = SHEET.worksheet('words')
 HIGHSCORES = SHEET.worksheet('highscores')
 
-scores = HIGHSCORES.get_all_records()
-results = {}
+#scores = HIGHSCORES.get_all_records()
+#results = {}
 
 # Global variable to hold the random_row
 random_row = None
@@ -39,6 +39,16 @@ def welcome_screen():
     print(view_hangman(tries))
     
 
+#def update_highscores_worksheet():
+    #"""
+    #Populates worksheet using a dictionary
+    #"""
+    #keys = [str(eachvalue) for eachvalue in scores.keys()]
+    #values = [str(eachvalue) for eachvalue in scores.values()]
+    #update_results = [{'range': 'A2:Z2', 'values': [keys]}, {'range': 'A3:Z3', 'values': [values]}]
+    #HIGHSCORES.batch_update(update_results)
+
+
 def get_username():
     """
     User enters their name, letters only
@@ -52,19 +62,9 @@ def get_username():
             print("Please enter only letters")
 
 
-def update_highscores_worksheet():
-    """
-    Populates worksheet using a dictionary
-    """
-    keys = [str(eachvalue) for eachvalue in scores[0].keys()]
-    values = [str(eachvalue) for eachvalue in scores[0].values()]
-    update_results = [{'range': 'A1:D1', 'values': [keys]}, {'range': 'A2:D2', 'values': [values]}]
-    HIGHSCORES.batch_update(update_results)
-
-
 def clear_terminal():
     """
-    Function to tclear the terminal after selections
+    Function to clear the terminal after selections
     """
     os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -81,7 +81,7 @@ def validate_guess(guess, letters_guessed):
         if guess.isalpha() is False:
             print("Only letters are valid")
         if len(guess) != 1:
-            print("Only one letter can be guessed at a time")     
+            print("Only one letter can be guessed at a time")    
         return False
 
 
@@ -117,7 +117,7 @@ def play_game():
     secret_word = get_secret_word()
     hint = get_secret_hint()
     letters_guessed = ""
-
+    
     # Number of attempts before player fails
     tries = 6
     print(view_hangman(tries))
@@ -125,7 +125,7 @@ def play_game():
     # Loop the game until the player fails, and break when they win
     while tries > 0:
 
-        guess = input("  " * 10 + "\nEnter a letter: \nFor the hint type: hint \n")
+        guess = input("  " * 10 + "\nEnter a letter: \nFor the hint type: hint\n")
 
         # Validates the guess and then checks if it is in the secret word.
         # If the letter is incorrect, tries increments by 1.
@@ -169,6 +169,7 @@ def play_game():
                 if incorrect_letter_count == 0:
                     print("")
                     print(f"Congratulations {username}! The word was {secret_word}")
+                    print(leaderboard)
                     break
                     
     # If the incorrect letter count = 6 the player loses.
@@ -267,3 +268,4 @@ welcome_screen()
 get_username()
 clear_terminal()
 play_game()
+
