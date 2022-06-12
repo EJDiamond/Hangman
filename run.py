@@ -38,16 +38,16 @@ def welcome_screen():
     tries = 0
     print(view_hangman(tries))
     
-
-#def update_highscores_worksheet():
-    #"""
+"""
+def update_highscores_worksheet():
+    """
     #Populates worksheet using a dictionary
-    #"""
-    #keys = [str(eachvalue) for eachvalue in scores.keys()]
-    #values = [str(eachvalue) for eachvalue in scores.values()]
-    #update_results = [{'range': 'A2:Z2', 'values': [keys]}, {'range': 'A3:Z3', 'values': [values]}]
-    #HIGHSCORES.batch_update(update_results)
-
+    """
+    keys = [str(eachvalue) for eachvalue in scores.keys()]
+    values = [str(eachvalue) for eachvalue in scores.values()]
+    update_results = [{'range': 'A2:Z2', 'values': [keys]}, {'range': 'A3:Z3', 'values': [values]}]
+    HIGHSCORES.batch_update(update_results)
+"""
 
 def get_username():
     """
@@ -169,7 +169,6 @@ def play_game():
                 if incorrect_letter_count == 0:
                     print("")
                     print(f"Congratulations {username}! The word was {secret_word}")
-                    print(leaderboard)
                     break
                     
     # If the incorrect letter count = 6 the player loses.
