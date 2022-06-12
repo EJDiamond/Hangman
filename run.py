@@ -3,7 +3,7 @@ Import the spreadsheet to retrieve the secret words
 """
 from random import randrange
 import os
-import pyfiglet
+from pyfiglet import Figlet
 import gspread
 from google.oauth2.service_account import Credentials
 
@@ -33,11 +33,11 @@ def welcome_screen():
     """
     Hangman banner on home screen
     """
-    result = pyfiglet.figlet_format("HANGMAN")
-    print(result)
+    result = Figlet(font='slant')
+    print(result.renderText("HANGMAN"))
     tries = 0
     print(view_hangman(tries))
-    
+
 
 def get_username():
     """
