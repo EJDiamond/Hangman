@@ -21,6 +21,9 @@ SHEET = GSPREAD_CLIENT.open('hangman_words')
 WORDS = SHEET.worksheet('words')
 HIGHSCORES = SHEET.worksheet('highscores')
 
+scores = HIGHSCORES.get_all_records()
+results = {}
+
 # Global variable to hold the random_row
 random_row = None
 username = None
@@ -47,6 +50,16 @@ def get_username():
             break
         else: 
             print("Please enter only letters")
+
+
+def update_highscores_worksheet():
+    """
+    Populates worksheet using a dictionary
+    """
+    keys = [str(eachvalue) for eachvalue in scores[0].keys()]
+    values = [str(eachvalue) for eachvalue in scores[0].values()]
+    update_results = [{'range': 'A1:D1', 'values': [keys]}, {'range': 'A2:D2', 'values': [values]}]
+    HIGHSCORES.batch_update(update_results)
 
 
 def clear_terminal():
