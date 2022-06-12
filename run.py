@@ -3,6 +3,7 @@ Import the spreadsheet to retrieve the secret words
 """
 from random import randrange
 import os
+import pyfiglet
 import gspread
 from google.oauth2.service_account import Credentials
 
@@ -23,7 +24,21 @@ WORDS = SHEET.worksheet('words')
 random_row = None
 
 
+def welcome_screen():
+    """
+    Hangman banner on home screen
+    """
+    result = pyfiglet.figlet_format("HANGMAN")
+    print(result)
+
+
+welcome_screen()
+
+
 def clear_terminal():
+    """
+    Function to tclear the terminal after selections
+    """
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
@@ -39,8 +54,7 @@ def validate_guess(guess, letters_guessed):
         if guess.isalpha() is False:
             print("Only letters are valid")
         if len(guess) != 1:
-            print("Only one letter can be guessed at a time")
-        
+            print("Only one letter can be guessed at a time")     
         return False
 
 
@@ -84,7 +98,7 @@ def play_game():
     # Loop the game until the player fails, and break when they win
     while tries > 0:
 
-        guess = input("\nEnter a letter: \nFor the hint type: hint \n")
+        guess = input("  " * 10 + "\nEnter a letter: \nFor the hint type: hint \n")
 
         # Validates the guess and then checks if it is in the secret word.
         # If the letter is incorrect, tries increments by 1.
@@ -130,7 +144,7 @@ def play_game():
                     print(f"Congratulations! The word was {secret_word}")
                     break
                 
-        clear_terminal()
+        
     # If the incorrect letter count = 6 the player loses.
     else:
         print("")
