@@ -44,7 +44,7 @@ def get_username():
     User enters their name, letters only
     """    
     global username
-    username = input("\nEnter a username:")
+    username = input("\nEnter a username:").capitalize()
     while True:
         if username.isalpha():
             break
@@ -88,7 +88,7 @@ def get_secret_word():
     Uses index 0 from random row to pull the random word
     """
     global random_row
-    return random_row[0]
+    return random_row[0].upper()
 
 
 def get_secret_hint():
@@ -118,11 +118,11 @@ def play_game():
     # Loop the game until the player fails, and break when they win
     while tries > 0:
         print('')
-        guess = input("\nEnter a letter: \n\nFor the hint type: hint\n")
+        guess = input("\nEnter a letter: \n\nFor the hint type: hint\n").upper()
 
         # Validates the guess and then checks if it is in the secret word.
         # If the letter is incorrect, tries increments by 1.
-        if guess == "hint":
+        if guess == "hint".upper():
             print(hint)
         else:
             if validate_guess(guess, letters_guessed):  
@@ -163,20 +163,26 @@ def play_game():
                 if incorrect_letter_count == 0:
                     clear_terminal()
                     print(f"Congratulations {username} you won! The word was {secret_word}")
-                    winner_play_again = input("\nWould you like to play again? y\n")
+                    winner_play_again = input("\nWould you like to play again? y/n")
                     if winner_play_again == "y":
                         clear_terminal()
                         play_game()
+                    else:
+                        clear_terminal()
+                        main()
                     break
     # If the incorrect letter count = 6 the player loses.
     else:
         clear_terminal()
         print(f"Sorry {username} you lose! The word was {secret_word}")
-        loser_play_again = input("\nWould you like to play again? / Y\n")
+        loser_play_again = input("\nWould you like to play again? / y/n")
 
-        if loser_play_again == "Y":
+        if loser_play_again == "y":
             clear_terminal()
             play_game()
+        else:
+            clear_terminal()
+            main()
 
 
 def view_hangman(tries):
