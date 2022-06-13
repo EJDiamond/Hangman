@@ -25,8 +25,8 @@ HIGHSCORES = SHEET.worksheet('highscores')
 # results = {}
 
 # Global variable to hold the random_row
-random_row = None
-username = None
+RANDOM_ROW = None
+USERNAME = None
 
 
 def welcome_screen():
@@ -44,10 +44,10 @@ def get_username():
     """
     User enters their name, letters only
     """
-    global username
-    username = input("\nEnter a username:").capitalize()
+    global USERNAME
+    USERNAME = input("\nEnter a username:").capitalize()
     while True:
-        if username.isalpha():
+        if USERNAME.isalpha():
             break
         else:
             print("Please enter only letters")
@@ -80,24 +80,24 @@ def get_random_row():
     """
     Pulls a random row from the google sheet for word and hint
     """
-    global random_row
-    random_row = WORDS.row_values(randrange(1, len(WORDS.col_values(1))))
+    global RANDOM_ROW
+    RANDOM_ROW = WORDS.row_values(randrange(1, len(WORDS.col_values(1))))
 
 
 def get_secret_word():
     """
     Uses index 0 from random row to pull the random word
     """
-    global random_row
-    return random_row[0].upper()
+    global RANDOM_ROW
+    return RANDOM_ROW[0].upper()
 
 
 def get_secret_hint():
     """
     Uses index 1 from random row to pull the random word's hint
     """
-    global random_row
-    return random_row[1].capitalize()
+    global RANDOM_ROW
+    return RANDOM_ROW[1].capitalize()
 
 
 def play_game():
@@ -129,7 +129,7 @@ def play_game():
             if validate_guess(guess, letters_guessed):
                 if guess in secret_word:
                     print("")
-                    print(f"Well Done {username}! The letter {guess} is "
+                    print(f"Well Done {USERNAME}! The letter {guess} is "
                           "in the word.")
                     print("")
                     print(view_hangman(tries))
@@ -137,7 +137,7 @@ def play_game():
                 else:
                     tries -= 1
                     print("")
-                    print(f"Sorry {username},"
+                    print(f"Sorry {USERNAME},"
                           " the letter {guess} is not in the word.\n")
                     print(f"You have {tries} attempt(s) left.\n")
                     print(view_hangman(tries))
@@ -165,7 +165,7 @@ def play_game():
                 # has guessed the whole word correctly and the loop breaks.
                 if incorrect_letter_count == 0:
                     clear_terminal()
-                    print(f"Congratulations {username} you won!"
+                    print(f"Congratulations {USERNAME} you won!"
                           " The word was {secret_word}")
                     winner_play_again = input("\nWould you like to "
                                               "play again? y/n")
@@ -179,7 +179,7 @@ def play_game():
     # If the incorrect letter count = 6 the player loses.
     else:
         clear_terminal()
-        print(f"Sorry {username} you lose! The word was {secret_word}")
+        print(f"Sorry {USERNAME} you lose! The word was {secret_word}")
         loser_play_again = input("\nWould you like to play again? / y/n")
 
         if loser_play_again == "y":
