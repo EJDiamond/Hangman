@@ -261,8 +261,14 @@ def view_hangman(tries):
     return stages[tries]
 
 
-welcome_screen()
-get_username()
-clear_terminal()
-play_game()
+def main():
+    """
+    Main function to call all functions
+    """
+    welcome_screen()
+    get_username()
+    clear_terminal()
+    play_game()
 
+
+main()
