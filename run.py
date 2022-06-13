@@ -131,12 +131,14 @@ def play_game():
                     print(f"Well Done {username}! The letter {guess} is in the word.")
                     print("")
                     print(view_hangman(tries))
+                    print('\n' * 2 )
                 else:
                     tries -= 1
                     print("")
                     print(f"Sorry {username}, the letter {guess} is not in the word.\n")
                     print(f"You have {tries} attempt(s) left.\n")
                     print(view_hangman(tries))
+                    print('')
         
                 # Letters guessed variable adds each guess, so the user can see 
                 # what they have already tried.
