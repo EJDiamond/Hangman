@@ -12,7 +12,7 @@ SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
     "https://www.googleapis.com/auth/drive"
-    ]
+]
 
 CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
@@ -21,7 +21,7 @@ SHEET = GSPREAD_CLIENT.open('hangman_words')
 WORDS = SHEET.worksheet('words')
 HIGHSCORES = SHEET.worksheet('highscores')
 
-# scores = HIGHSCORES.get_all_records()
+scores = HIGHSCORES.get_all_records()
 # results = {}
 
 # Global variable to hold the random_row
@@ -104,6 +104,7 @@ def play_game():
     """
     Function to play game
     """
+    current_player_score = 0
     get_random_row()
     secret_word = get_secret_word()
     hint = get_secret_hint()
@@ -114,7 +115,7 @@ def play_game():
 
     for letter in secret_word:
         print("_ ", end="")
-         
+
     # Loop the game until the player fails, and break when they win
     while tries > 0:
         print('')
@@ -142,7 +143,7 @@ def play_game():
                     print(f"You have {tries} attempt(s) left.\n")
                     print(view_hangman(tries))
                     print('')
-        
+
                 # Letters guessed variable adds each guess, so the user can see
                 # what they have already tried.
                 letters_guessed = letters_guessed + guess
@@ -160,11 +161,13 @@ def play_game():
                 # Prints letters guessed each time a new letter is guessed.
                 print("")
                 print(f"\nLetters guessed: {letters_guessed}")
-                
+
                 # If incorrect letter count = 0 after the loop runs, the player
                 # has guessed the whole word correctly and the loop breaks.
                 if incorrect_letter_count == 0:
+                    current_player_score += 1
                     clear_terminal()
+                    update_highscores_sheet()
                     print(f"Congratulations {USERNAME} you won!"
                           " The word was {secret_word}")
                     winner_play_again = input("\nWould you like to "
@@ -190,12 +193,30 @@ def play_game():
             main()
 
 
+def update_highscores_sheet():
+    global HIGHSCORES, scores
+
+    if len(scores) > 0:
+        keys = [str(eachvalue) for eachvalue in scores[0].keys()]
+        values = [str(eachvalue) for eachvalue in scores[0].values()]
+        update_results = [
+            {'range': 'A1:Z1', 'values': [keys]},
+            {'range': 'A2:Z2', 'values': [values]}
+        ]
+    else:
+        scores.append(dict(['Key', 'Value']))
+        scores.append(dict(['em', '']))
+        update_results = {[scores]}
+    print(update_results)
+    HIGHSCORES.update(update_results)
+
+
 def view_hangman(tries):
     """
     The hangman stages to be shown as the number of lives decrease
     """
     stages = [
-                              """
+        r"""
                               +----------------+
                               |   -------+     |
                               |   |      |     |
@@ -205,7 +226,7 @@ def view_hangman(tries):
                               |   |            |
                               |   ----------   |
                               +----------------+""",
-                              """
+        r"""
                               +----------------+
                               |   -------+     |
                               |   |      |     |
@@ -215,7 +236,7 @@ def view_hangman(tries):
                               |   |            |
                               |   ----------   |
                               +----------------+""",
-                              """
+        r"""
                               +----------------+
                               |   -------+     |
                               |   |      |     |
@@ -225,7 +246,7 @@ def view_hangman(tries):
                               |   |            |
                               |   ----------   |
                               +----------------+""",
-                              """
+        r"""
                               +----------------+
                               |   -------+     |
                               |   |      |     |
@@ -235,7 +256,7 @@ def view_hangman(tries):
                               |   |            |
                               |   ----------   |
                               +----------------+""",
-                              """
+        r"""
                               +----------------+
                               |   -------+     |
                               |   |      |     |
@@ -245,7 +266,7 @@ def view_hangman(tries):
                               |   |            |
                               |   ----------   |
                               +----------------+""",
-                              """
+        r"""
                               +----------------+
                               |   -------+     |
                               |   |      |     |
@@ -255,7 +276,7 @@ def view_hangman(tries):
                               |   |            |
                               |   ----------   |
                               +----------------+""",
-                              """
+        r"""
                               +----------------+
                               |   -------+     |
                               |   |      |     |
@@ -265,7 +286,7 @@ def view_hangman(tries):
                               |   |            |
                               |   ----------   |
                               +----------------+""",
-            ]
+    ]
     return stages[tries]
 
 
@@ -279,4 +300,5 @@ def main():
     play_game()
 
 
-main()
+if __name__ == '__main__':
+    main()
