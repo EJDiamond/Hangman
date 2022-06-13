@@ -161,17 +161,21 @@ def play_game():
                 # If incorrect letter count = 0 after the loop runs, the player
                 # has guessed the whole word correctly and the loop breaks.
                 if incorrect_letter_count == 0:
-                    print("")
-                    print(f"Congratulations {username}! The word was {secret_word}")
+                    clear_terminal()
+                    print(f"Congratulations {username} you won! The word was {secret_word}")
+                    winner_play_again = input("\nWould you like to play again? y\n")
+                    if winner_play_again == "y":
+                        clear_terminal()
+                        play_game()
                     break
-                    
     # If the incorrect letter count = 6 the player loses.
     else:
-        print("")
+        clear_terminal()
         print(f"Sorry {username} you lose! The word was {secret_word}")
         loser_play_again = input("\nWould you like to play again? / Y\n")
 
         if loser_play_again == "Y":
+            clear_terminal()
             play_game()
 
 
