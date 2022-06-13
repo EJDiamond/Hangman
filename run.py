@@ -33,7 +33,7 @@ def welcome_screen():
     """
     Hangman banner on home screen
     """
-    result = Figlet(font='slant')
+    result = Figlet(font='big')
     print(result.renderText("HANGMAN"))
     tries = 0
     print(view_hangman(tries))
@@ -112,10 +112,13 @@ def play_game():
     tries = 6
     print(view_hangman(tries))
 
+    for letter in secret_word:
+        print("_ ", end="")
+        
     # Loop the game until the player fails, and break when they win
     while tries > 0:
-
-        guess = input("  " * 10 + "\nEnter a letter: \nFor the hint type: hint\n")
+        print('')
+        guess = input("\nEnter a letter: \n\nFor the hint type: hint\n")
 
         # Validates the guess and then checks if it is in the secret word.
         # If the letter is incorrect, tries increments by 1.
@@ -133,7 +136,6 @@ def play_game():
                     print("")
                     print(f"Sorry {username}, the letter {guess} is not in the word.\n")
                     print(f"You have {tries} attempt(s) left.\n")
-                    print("")
                     print(view_hangman(tries))
         
                 # Letters guessed variable adds each guess, so the user can see 
@@ -145,15 +147,15 @@ def play_game():
                 # underscore if it is incorrect.
                 for letter in secret_word:
                     if letter in letters_guessed:
-                        print(f"{letter}", end="")
+                        print(f"{letter} ", end="")
                     else:
-                        print("_", end="")
+                        print("_ ", end="")
                         incorrect_letter_count += 1
 
                 # Prints letters guessed each time a new letter is guessed.
                 print("")
                 print(f"\nLetters guessed: {letters_guessed}")
-
+                
                 # If incorrect letter count = 0 after the loop runs, the player
                 # has guessed the whole word correctly and the loop breaks.
                 if incorrect_letter_count == 0:
