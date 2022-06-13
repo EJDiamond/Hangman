@@ -96,7 +96,7 @@ def get_secret_hint():
     Uses index 1 from random row to pull the random word's hint
     """
     global random_row
-    return random_row[1]
+    return random_row[1].capitalize()
 
 
 def play_game():
