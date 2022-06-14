@@ -1,5 +1,7 @@
 # Hangman
 
+[View live project](https://hangman-ed.herokuapp.com/)
+![Responsive image](/hangman_readme_images/)
 ## User Experience(UX)
 
 * First Time User Goals:
