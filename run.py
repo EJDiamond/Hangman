@@ -65,7 +65,8 @@ def validate_guess(guess, letters_guessed):
     """
     Validating that the guess is a letter and hasn't already been guessed
     """
-    if (guess not in letters_guessed) and guess.isalpha() and (len(guess) == 1):
+    if (guess not in letters_guessed) and guess.isalpha() and (
+            len(guess) == 1):
         return True
     else:
         if guess in letters_guessed:
