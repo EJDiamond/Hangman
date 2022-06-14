@@ -22,9 +22,6 @@ SHEET = GSPREAD_CLIENT.open('hangman_words')
 WORDS = SHEET.worksheet('words')
 HIGHSCORES = SHEET.worksheet('highscores')
 
-scores = HIGHSCORES.get_all_records()
-# results = {}
-
 # Global variable to hold the random_row
 RANDOM_ROW = None
 USERNAME = None
@@ -106,7 +103,6 @@ def play_game():
     """
     Function to play game
     """
-    current_player_score = 0
     get_random_row()
     secret_word = get_secret_word()
     hint = get_secret_hint()
@@ -167,9 +163,7 @@ def play_game():
                 # If incorrect letter count = 0 after the loop runs, the player
                 # has guessed the whole word correctly and the loop breaks.
                 if incorrect_letter_count == 0:
-                    current_player_score += 1
                     clear_terminal()
-                    update_highscores_sheet()
                     print(f"Congratulations {USERNAME} you won!"
                           f" The word was {secret_word}")
                     winner_play_again = input("\nWould you like to "
@@ -193,28 +187,6 @@ def play_game():
         else:
             clear_terminal()
             main()
-
-
-def update_highscores_sheet():
-    """
-    When the user wins the game, there name and score is logged in the
-    highscore worksheet
-    """
-    global HIGHSCORES, scores
-
-    if len(scores) > 0:
-        keys = [str(eachvalue) for eachvalue in scores[0].keys()]
-        values = [str(eachvalue) for eachvalue in scores[0].values()]
-        update_results = [
-            {'range': 'A1:Z1', 'values': [keys]},
-            {'range': 'A2:Z2', 'values': [values]}
-        ]
-    else:
-        scores.append([dict(['Key', 'Value'])])
-        scores.append(dict(['em', '']))
-        update_results = {[scores]}
-    print(update_results)
-    HIGHSCORES.update(update_results)
 
 
 def main():
