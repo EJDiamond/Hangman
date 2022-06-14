@@ -21,7 +21,7 @@ SHEET = GSPREAD_CLIENT.open('hangman_words')
 WORDS = SHEET.worksheet('words')
 HIGHSCORES = SHEET.worksheet('highscores')
 
-scores = HIGHSCORES.get_all_records()
+SCORES = HIGHSCORES.get_all_records()
 # results = {}
 
 # Global variable to hold the random_row
@@ -194,19 +194,23 @@ def play_game():
 
 
 def update_highscores_sheet():
-    global HIGHSCORES, scores
+    """
+    When the user wins the game, there name and score is logged in the
+    highscore worksheet
+    """
+    global HIGHSCORES, SCORES
 
-    if len(scores) > 0:
-        keys = [str(eachvalue) for eachvalue in scores[0].keys()]
-        values = [str(eachvalue) for eachvalue in scores[0].values()]
+    if len(SCORES) > 0:
+        keys = [str(eachvalue) for eachvalue in SCORES[0].keys()]
+        values = [str(eachvalue) for eachvalue in SCORES[0].values()]
         update_results = [
             {'range': 'A1:Z1', 'values': [keys]},
             {'range': 'A2:Z2', 'values': [values]}
         ]
     else:
-        scores.append(dict(['Key', 'Value']))
-        scores.append(dict(['em', '']))
-        update_results = {[scores]}
+        SCORES.append(dict(['Key', 'Value']))
+        SCORES.append(dict(['em', '']))
+        update_results = {[SCORES]}
     print(update_results)
     HIGHSCORES.update(update_results)
 
