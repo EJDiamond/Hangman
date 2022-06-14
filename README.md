@@ -11,6 +11,8 @@
 
 ## User Experience(UX)
 
+### User Stories
+
 * First Time User Goals:
 
   1. As a first time user, I want to have fun playing the game and feel nostalgia from having played the original game.
@@ -27,11 +29,11 @@
 
   1. As a frequent user, I want to be able to continously play the game without coming across any words I have encountered before.
 
-## Flowchart
+### Flowchart
 
 ![Flowchart](/hangman_readme_images/hangman-flowchart.png)
 
-## Existing Features
+### Existing Features
 
 - __Welcome screen__
 
@@ -41,7 +43,7 @@ An imported figlet library (pyfiglet) is used to create the text banner from sta
 
 - __Username error message__
 
-The username imput validates that the user has only used letters in there name, if false, prompts the user to only use letters.
+The username input validates that the user has only used letters in there name, if false, prompts the user to only use letters.
 
 ![Username error message](/hangman_readme_images/only_letters_username.png)
 
@@ -92,6 +94,27 @@ If the player guesses the word before the number of tries i.e number of incorrec
 If the player runs out of tries they lose and the secret word is printed. The option to play again is presented if the user types 'y' the game function is ran and a new secret word is selected. If the players types any other character they are taken back to the welcome screen.
 
 ![Player loses](/hangman_readme_images/loser.png)
+
+
+### Future features
+- An option to add a player two to the game i.e playing against the computer, to give the player more of a challenge.
+- A leaderboard so the user can see where they are ranking against other users.
+- A difiiculty levels option, so the player has choice perhaps of length of word they want to guess.
+- A life removed when a hint is requested.
+
+### Frameworks, libraries and programs used
+
+- [Github](https://github.com/)
+  - Used to save project code from Git.
+
+- [Lucid](https://lucid.co/)
+  - USed to build the flow chart to plan the hangman game.
+
+- [Heroku](https://www.heroku.com)
+  - Platform used to buidl, run and operate game.
+
+- [Google Sheets](https://docs.google.com/spreadsheets)
+  - Linked via API to retrieve secret words and hints.
 
 
 
