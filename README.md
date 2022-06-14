@@ -20,4 +20,4 @@
 
 ## Flowchart
 
-![Flowchart](hangmang-flowchart.png)
+![Flowchart](hangman-flowchart.png)
