@@ -171,7 +171,7 @@ def play_game():
                     clear_terminal()
                     update_highscores_sheet()
                     print(f"Congratulations {USERNAME} you won!"
-                          " The word was {secret_word}")
+                          f" The word was {secret_word}")
                     winner_play_again = input("\nWould you like to "
                                               "play again? y/n")
                     if winner_play_again == "y":
