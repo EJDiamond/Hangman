@@ -1,7 +1,13 @@
 # Hangman
 
 [View live project](https://hangman-ed.herokuapp.com/)
-![Responsive image](/hangman_readme_images/)
+
+![Responsive image](/hangman_readme_images/responsive_image.png)
+
+# Table of contents
+1. [User Experience](##UserExperience(UX))
+2. [Flowchart](##Flowchart)
+
 ## User Experience(UX)
 
 * First Time User Goals:
@@ -14,7 +20,7 @@
 
   1. As a returning visitor, I want to be able to play the game over and over without having repeated words.
   2. As a returning visitor, I want to be able to navigate through the game the same as the first time I played.
-  3. As a returning visitor, I want to be able to check highscores and try and beat them.
+  3. As a returning visitor, I want to be familiar with the game and use hints to help me solve the secret words.
 
 * Frequent User Goals:
 
