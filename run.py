@@ -6,6 +6,7 @@ import os
 from pyfiglet import Figlet
 import gspread
 from google.oauth2.service_account import Credentials
+from hangman import view_hangman
 
 
 SCOPE = [
@@ -21,7 +22,7 @@ SHEET = GSPREAD_CLIENT.open('hangman_words')
 WORDS = SHEET.worksheet('words')
 HIGHSCORES = SHEET.worksheet('highscores')
 
-SCORES = HIGHSCORES.get_all_records()
+scores = HIGHSCORES.get_all_records()
 # results = {}
 
 # Global variable to hold the random_row
@@ -198,100 +199,21 @@ def update_highscores_sheet():
     When the user wins the game, there name and score is logged in the
     highscore worksheet
     """
-    global HIGHSCORES, SCORES
+    global HIGHSCORES, scores
 
-    if len(SCORES) > 0:
-        keys = [str(eachvalue) for eachvalue in SCORES[0].keys()]
-        values = [str(eachvalue) for eachvalue in SCORES[0].values()]
+    if len(scores) > 0:
+        keys = [str(eachvalue) for eachvalue in scores[0].keys()]
+        values = [str(eachvalue) for eachvalue in scores[0].values()]
         update_results = [
             {'range': 'A1:Z1', 'values': [keys]},
             {'range': 'A2:Z2', 'values': [values]}
         ]
     else:
-        SCORES.append(dict(['Key', 'Value']))
-        SCORES.append(dict(['em', '']))
-        update_results = {[SCORES]}
+        scores.append(dict(['Key', 'Value']))
+        scores.append(dict(['em', '']))
+        update_results = {[scores]}
     print(update_results)
     HIGHSCORES.update(update_results)
-
-
-def view_hangman(tries):
-    """
-    The hangman stages to be shown as the number of lives decrease
-    """
-    stages = [
-        r"""
-                              +----------------+
-                              |   -------+     |
-                              |   |      |     |
-                              |   |      0     |
-                              |   |     /|\    |
-                              |   |     / \    |
-                              |   |            |
-                              |   ----------   |
-                              +----------------+""",
-        r"""
-                              +----------------+
-                              |   -------+     |
-                              |   |      |     |
-                              |   |      0     |
-                              |   |     /|\    |
-                              |   |     /      |
-                              |   |            |
-                              |   ----------   |
-                              +----------------+""",
-        r"""
-                              +----------------+
-                              |   -------+     |
-                              |   |      |     |
-                              |   |      0     |
-                              |   |     /|\    |
-                              |   |            |
-                              |   |            |
-                              |   ----------   |
-                              +----------------+""",
-        r"""
-                              +----------------+
-                              |   -------+     |
-                              |   |      |     |
-                              |   |      0     |
-                              |   |     /|     |
-                              |   |            |
-                              |   |            |
-                              |   ----------   |
-                              +----------------+""",
-        r"""
-                              +----------------+
-                              |   -------+     |
-                              |   |      |     |
-                              |   |      0     |
-                              |   |      |     |
-                              |   |            |
-                              |   |            |
-                              |   ----------   |
-                              +----------------+""",
-        r"""
-                              +----------------+
-                              |   -------+     |
-                              |   |      |     |
-                              |   |      0     |
-                              |   |            |
-                              |   |            |
-                              |   |            |
-                              |   ----------   |
-                              +----------------+""",
-        r"""
-                              +----------------+
-                              |   -------+     |
-                              |   |      |     |
-                              |   |            |
-                              |   |            |
-                              |   |            |
-                              |   |            |
-                              |   ----------   |
-                              +----------------+""",
-    ]
-    return stages[tries]
 
 
 def main():
