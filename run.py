@@ -20,7 +20,6 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread. authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('hangman_words')
 WORDS = SHEET.worksheet('words')
-HIGHSCORES = SHEET.worksheet('highscores')
 
 # Global variable to hold the random_row
 RANDOM_ROW = None
