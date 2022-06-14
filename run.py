@@ -141,7 +141,7 @@ def play_game():
                     tries -= 1
                     print("")
                     print(f"Sorry {USERNAME},"
-                          " the letter {guess} is not in the word.\n")
+                          f" the letter {guess} is not in the word.\n")
                     print(f"You have {tries} attempt(s) left.\n")
                     print(view_hangman(tries))
                     print('')
@@ -210,7 +210,7 @@ def update_highscores_sheet():
             {'range': 'A2:Z2', 'values': [values]}
         ]
     else:
-        scores.append(dict(['Key', 'Value']))
+        scores.append([dict(['Key', 'Value'])])
         scores.append(dict(['em', '']))
         update_results = {[scores]}
     print(update_results)
