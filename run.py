@@ -42,8 +42,9 @@ def get_username():
     User enters their name, letters only
     """
     global USERNAME
-    USERNAME = input("\nEnter a username:").capitalize()
+
     while True:
+        USERNAME = input("\nEnter a username:").capitalize()
         if USERNAME.isalpha():
             break
         else:
