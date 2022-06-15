@@ -1,5 +1,7 @@
 # Hangman
 
+A take on the well known game Hangman, for project three I have deployed the Python terminal game through Heroku.
+
 [View live project](https://hangman-ed.herokuapp.com/)
 
 ![Responsive image](/hangman_readme_images/responsive_image.png)
@@ -213,6 +215,6 @@ Deployed through Heroku using the following steps:
 # Credits
 
 - A number of youtube tutorials were watch to get ideas on how to build certain functions https://www.youtube.com/]
-- The [codefather](https://codefather.tech/blog/hangman-game-python/) site contained a hangman page will aslo helped think of functions and a differnt way of appoaching the game.
-- The [geeks for geeks](https://www.geeksforgeeks.org/python-ascii-art-using-pyfiglet-module/) site was helpful in how to work with figlet.
-- The slack commuinty was helpful with a number of issues I faced, including how to pul random data from the google sheet.
+- The site [codefather](https://codefather.tech/blog/hangman-game-python/), contained a hangman page will aslo helped think of functions and a differnt way of appoaching the game.
+- The site [geeks for geeks](https://www.geeksforgeeks.org/python-ascii-art-using-pyfiglet-module/), was helpful in how to work with figlet.
+- The slack commuinty was helpful with a number of issues I faced, including how to pull random data from the google sheet.
