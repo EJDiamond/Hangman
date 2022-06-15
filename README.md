@@ -13,6 +13,7 @@
     - [Initial game screen](#initial-game-screen)
     - [Error letters only](#error-letters-only)
     - [Error single letter only](#error-single-letter-only)
+    - [Error repeated guess](#error-repeated-guess)
     - [Correct letter](#correct-letter)
     - [Incorrect letter](#incorrect-letter)
     - [Hint](#hint)
@@ -62,7 +63,7 @@ An imported figlet library (pyfiglet) is used to create the text banner from sta
 
 ### - __Username error message__
 
-The username input validates that the user has only used letters in there name, if false, prompts the user to only use letters.
+The username input validates that the user has only used letters in there name, if false, the user is prompted that only letters are valid.
 
 ![Username error message](/hangman_readme_images/only_letters_username.png)
 
@@ -74,7 +75,7 @@ The user is presented with the frame of hangman minus the man, signalling the st
 
 ### - __Error letters only__
 
-If the user is to type a number or character into the terminal the validator function will print an error message letting the user know that only letters are valid.
+If the user is to type a number or character into the terminal the validator function will print an error message letting the user know that only letters are valid and then proceed to type a letter.
 
 ![Error letters only](/hangman_readme_images/error_letters_only.png)
 
@@ -84,6 +85,12 @@ Similar to the error letters only, if the user is to type a number of characters
 
 ![Error single letter only](/hangman_readme_images/error_multiple_letter.png)
 
+### -__ Error repeated guess__
+
+If the user is to input a letter that has already been guessed the terminal will print the letter "letter" has aready been guessed, be it correct or incorrect. No lives will be taken for this error and the user may then continue to play.
+
+![Error repeated guess](#error-repeated-guess)
+
 ### - __Correct letter__
 
 If the player inputs a correct letter, it will be inserted into the underscored line in as many places as the letter exists, the user will be informed by name that the guess was correct. This letter will also be placed in the letters guessed line so they can keep track of what has already been guessed.
@@ -92,13 +99,13 @@ If the player inputs a correct letter, it will be inserted into the underscored 
 
 ### - __Incorrect letter__
 
-If the letter input is incorrect the printed message informs the user that the letter is not in the word and that a life has been lost. This letter will then be printed into the letters guessed line to allow the user to see all the letters they have guessed. For each incorrect letter and life lost the hangman will gain a body part.ß
+If the letter input is incorrect the printed message informs the user that the letter is not in the word and that a life has been lost. This letter will then be printed into the letters guessed line, to allow the user to see all the letters they have guessed. For each incorrect letter and life lost the hangman will gain a body part.
 
 ![Incorrect letter](/hangman_readme_images/incorrect_letter.png)
 
 ### - __Hint__
 
-The player can request a hint by typing hint into the guess a letter box. The validator has an exception which allows the word (even though more than character) to be input, when this is done , the definition of the word is shown to the user. The hint can be displayed at an point throughout the game.
+The player can request a hint by typing "hint" into the guess a letter input. The validator has an exception which allows the word (even though more than one character) to be input, when this is done, the definition of the word is shown to the user. The hint can be displayed at an point throughout the game.
 
 ![Hint](/hangman_readme_images/show_hint.png)
 

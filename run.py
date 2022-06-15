@@ -167,7 +167,7 @@ def play_game():
                     print(f"Congratulations {USERNAME} you won!"
                           f" The word was {secret_word}")
                     winner_play_again = input("\nWould you like to "
-                                              "play again? y/n")
+                                              "play again? y/n\n")
                     if winner_play_again == "y":
                         clear_terminal()
                         play_game()
@@ -179,7 +179,7 @@ def play_game():
     else:
         clear_terminal()
         print(f"Sorry {USERNAME} you lose! The word was {secret_word}")
-        loser_play_again = input("\nWould you like to play again? / y/n")
+        loser_play_again = input("\nWould you like to play again? y/n\n")
 
         if loser_play_again == "y":
             clear_terminal()
