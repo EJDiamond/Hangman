@@ -1,6 +1,6 @@
 # Hangman
 
-A take on the well known game Hangman, for project three I have deployed the Python terminal game through Heroku.
+A take on the well known game Hangman, for project three I have deployed the Python terminal game through Heroku using a google sheet to pull my random secret words from.
 
 [View live project](https://hangman-ed.herokuapp.com/)
 
