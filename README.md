@@ -25,6 +25,8 @@
 6. [Testing](#testing)
     - [Validator testing](#validator-testing)
     - [User experience testing](#testing-user-experience)
+    - [Bugs/ issues](#bugsissues)
+7. [Deployment](#deployment)
 
 # User Experience(UX)
 
@@ -184,3 +186,26 @@ If the player runs out of tries they lose and the secret word is printed. The op
       - The database the random secret word is pulled from has over 300 words which are randomly pulled to the game, therefore the user would have to play for a long time to come across the same word, and if they did the characters they input would most likely be in a different order so the user wouldn't recognise it as the same word.
 
 
+## Bugs/issues
+
+- After deployimg the project to Heroku, I noticed that the validator for only entering letter in the username input wasn't working as it should.
+![Letters only error](/hangman_readme_images/bug_username_letter_only.png)
+This was rectified by moving the variable which had been mistakingly placed outside the while loop, to inside it.
+
+
+# Deployment
+
+Deployed through Heroku using the following steps:
+  - Add list of dependencies to requirements.txt file in gGithub.
+  - Select create new app on the Heroku dashboard then, create it giving it a name.
+  - Add the config Variable to the seetings, using the creds.json file.
+  - Add the buildbacks, Python and node,js in that order.
+  - Select the Github repository to deploy from Github.
+  - Select deploy.
+
+# Credits
+
+- A number of youtube tutorials were watch to get ideas on how to build certain functions https://www.youtube.com/]
+- The [codefather](https://codefather.tech/blog/hangman-game-python/) site contained a hangman page will aslo helped think of functions and a differnt way of appoaching the game.
+- The [geeks for geeks](https://www.geeksforgeeks.org/python-ascii-art-using-pyfiglet-module/) site was helpful in how to work with figlet.
+- The slack commuinty was helpful with a number of issues I faced, including how to pul random data from the google sheet.
