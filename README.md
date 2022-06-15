@@ -197,9 +197,10 @@ If the player runs out of tries they lose and the secret word is printed. The op
 
 ## Bugs/issues
 
-- After deployimg the project to Heroku, I noticed that the validator for only entering letter in the username input wasn't working as it should.
+- After deploying the project to Heroku, I noticed that the validator for only entering letter in the username input wasn't working as it should.
 ![Letters only error](/hangman_readme_images/bug_username_letter_only.png)
 This was rectified by moving the variable which had been mistakingly placed outside the while loop, to inside it.
+- In Heroku, if the hint given is longer than the terminal it is split into a few lines, but doesn't do this by using new lines, it splits it in the middle of a word. I was unsure of a function that would rectify this problem.
 
 
 # Deployment
