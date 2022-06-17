@@ -91,7 +91,7 @@ Similar to the error letters only, if the user is to type a number of characters
 
 If the user is to input a letter that has already been guessed the terminal will print the letter "letter" has aready been guessed, be it correct or incorrect. No lives will be taken for this error and the user may then continue to play.
 
-![Error repeated guess](#error-repeated-guess)
+![Error repeated guess](/hangman_readme_images/letter_repeated.png)
 
 ### - __Correct letter__
 
@@ -107,7 +107,7 @@ If the letter input is incorrect the printed message informs the user that the l
 
 ### - __Hint__
 
-The player can request a hint by typing "hint" into the guess a letter input. The validator has an exception which allows the word (even though more than one character) to be input, when this is done, the definition of the word is shown to the user. The hint can be displayed at an point throughout the game.
+The player can request a hint by typing "hint" into the guess a letter input. The validator has an exception which allows the word (even though more than one character) to be input, when this is done, the definition of the word is shown to the user. The hint can be displayed at any point throughout the game.
 
 ![Hint](/hangman_readme_images/show_hint.png)
 
